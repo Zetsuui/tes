@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Isi</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: whitesmoke;
+      }
+      .tenda {
+        margin-bottom: 20px;
+      }
+      img {
+        max-width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Form Penyewaan Tenda</h2>
+    <form>
+      <label for="nama">Nama:</label><br />
+      <input type="text" id="nama" name="nama" placeholder="Masukan Nama Anda" /><br /><br />
+
+      <label for="noTelp">No Telepon:</label><br />
+      <input type="tel" id="noTelp" name="noTelp" placeholder="Masukan No Telepon Anda" /><br /><br />
+
+      <label for="tanggalSewa">Tanggal Sewa:</label><br />
+      <input type="date" id="tanggalSewa" name="tanggalSewa" /><br /><br />
+
+      <label for="jenisTenda">Pilih Jenis Tenda:</label><br />
+      <select id="jenisTenda" name="jenisTenda" onchange="updateTendaInfo()" required>
+        <option value="">--Pilih Tenda--</option>
+        <option value="tenda1">Tenda Kecil</option>
+        <option value="tenda2">Tenda Besar</option></select
+      ><br /><br />
+
+      <div id="tendaInfo"></div>
+
+      <button type="submit">Sewa</button>
+      <button type="button" onclick="resetForm()">Batal</button>
+    </form>
+
+    <script>
+      function updateTendaInfo() {
+        const tendaInfo = document.getElementById("tendaInfo");
+        const jenisTenda = document.getElementById("jenisTenda").value;
+
+        if (jenisTenda === "tenda1") {
+          tendaInfo.innerHTML = `
+                  <div class="tenda">
+                      <h3>Tenda Kecil</h3>
+                      <img src="tenda_kecil.jpeg">
+                      <p>Harga: Rp 500.000</p>
+                  </div>
+              `;
+        } else if (jenisTenda === "tenda2") {
+          tendaInfo.innerHTML = `
+                  <div class="tenda">
+                      <h3>Tenda Besar</h3>
+                      <img src="tenda_besar.jpeg">
+                      <p>Harga: Rp 1.000.000</p>
+                  </div>
+              `;
+        } else {
+          tendaInfo.innerHTML = "";
+        }
+      }
+
+      function resetForm() {
+        document.querySelector("form").reset();
+        document.getElementById("tendaInfo").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>
